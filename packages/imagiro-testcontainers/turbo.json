@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "test": {
+      "inputs": ["tsconfig.json", "**/*.ts", "**/*.test.ts"],
+      "dependsOn": [
+        "^build",
+        "@imagiro/imagiro-data#build:docker",
+        "@imagiro/imagiro-service#build:docker",
+        "@imagiro/imagiro-worker#build:docker"
+      ]
+    },
+    "build": {
+      "inputs": ["tsconfig.json", "tsconfig.build.json", "**/*.ts"],
+      "outputs": ["**/*.js", "**/*.d.ts", "**/*.d.ts.map"],
+      "dependsOn": [
+        "@imagiro/imagiro-data#build:docker",
+        "@imagiro/imagiro-service#build:docker",
+        "@imagiro/imagiro-worker#build:docker"
+      ]
+    }
+  }
+}

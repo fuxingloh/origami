@@ -1,0 +1,53 @@
+services:
+  imagiro-service:
+    container_name: imagiro-service-${COMPOSE_INSTANCE_ID}
+    image: ghcr.io/fuxingloh/imagiro-service:${IMAGIRO_VERSION}
+    environment:
+      DEBUG: origami:*,imagiro:*
+      SERVICE_IAM_MODE: ${SERVICE_IAM_MODE}
+      SERVICE_IAM_ENDPOINT: ${SERVICE_IAM_ENDPOINT}
+      IMAGIRO_DATA_PG_HOST: postgres
+      IMAGIRO_DATA_PG_USER: postgres
+      IMAGIRO_DATA_PG_PASSWORD: postgres
+    depends_on:
+      imagiro-data:
+        condition: service_completed_successfully
+    ports:
+      - '0:3000'
+  imagiro-worker:
+    container_name: imagiro-worker-${COMPOSE_INSTANCE_ID}
+    image: ghcr.io/fuxingloh/imagiro-worker:${IMAGIRO_VERSION}
+    environment:
+      DEBUG: origami:*,imagiro:*
+      IMAGIRO_DATA_PG_HOST: postgres
+      IMAGIRO_DATA_PG_USER: postgres
+      IMAGIRO_DATA_PG_PASSWORD: postgres
+      STREAM_REGISTRY_USI: ${STREAM_REGISTRY_USI}
+    depends_on:
+      imagiro-data:
+        condition: service_completed_successfully
+  imagiro-data:
+    container_name: imagiro-data-${COMPOSE_INSTANCE_ID}
+    image: ghcr.io/fuxingloh/imagiro-data:${IMAGIRO_VERSION}
+    command: ['migrate']
+    environment:
+      DEBUG: origami:*,imagiro:*
+      IMAGIRO_DATA_PG_HOST: postgres
+      IMAGIRO_DATA_PG_USER: postgres
+      IMAGIRO_DATA_PG_PASSWORD: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+  postgres:
+    container_name: postgres-${COMPOSE_INSTANCE_ID}
+    image: postgres:latest
+    ports:
+      - '0:5432'
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-d', 'imagiro-data', '-U', 'postgres']
+      start_interval: 1s
+      start_period: 10s
+    environment:
+      POSTGRES_DB: imagiro-data
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres

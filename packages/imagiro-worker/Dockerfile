@@ -22,7 +22,7 @@ ENV TURBO_TELEMETRY_DISABLED=1
 FROM base AS pruner
 
 # renovate: datasource=npm depName=turbo
-ENV TURBO_VERSION=1.13.2
+ENV TURBO_VERSION=2
 RUN pnpm add -g turbo@${TURBO_VERSION}
 
 COPY . .
