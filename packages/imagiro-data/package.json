@@ -1,0 +1,38 @@
+{
+  "name": "@imagiro/imagiro-data",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "build:docker": "docker buildx build --progress=plain -t ghcr.io/fuxingloh/imagiro-data:$(node -p \"require('./package.json').version\") -f Dockerfile ../../",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {
+    "@fuxingloh/origami-json": "workspace:^",
+    "@fuxingloh/origami-program": "workspace:^",
+    "debug": "^4.3.4",
+    "kysely": "^0.27.3",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@testcontainers/postgresql": "^10.9.0",
+    "@types/debug": "^4.1.12",
+    "@types/pg": "^8.11.6",
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*"
+  }
+}
