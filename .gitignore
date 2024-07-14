@@ -1,0 +1,25 @@
+# MacOS
+.DS_Store
+
+# NodeJS
+node_modules
+dist
+build
+*.tgz
+coverage
+.nyc_output
+
+# tsconfig.json
+packages/*/**/*.d.ts
+packages/*/**/*.d.ts.map
+packages/*/**/*.js
+
+# turborepo
+.turbo
+
+# origami
+.origami
+
+# hardhat
+.hardhat
+workspace/solidity/contracts

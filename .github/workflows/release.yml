@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    outputs:
+      result: ${{ steps.version.outputs.result }}
+    steps:
+      - id: version
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = "${{ github.event.release.tag_name }}";
+            const semver = tag.replace('v', '');
+            if (semver.match(/^[0-9]+\.[0-9]+\.[0-9]+$/)) {
+                return semver
+            }
+            throw new Error('not semver, ref: ${context.ref}')
+          result-encoding: string
+
+  npm:
+    name: Release NPM
+    runs-on: ubuntu-latest
+    needs: version
+    environment: NPM Packages
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - run: corepack enable pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm -r exec pnpm version ${{ needs.Version.outputs.result }} --git-tag-version=false
+
+      - run: pnpm turbo run build
+
+      - run: npm config set "//registry.npmjs.org/:_authToken" "\${NPM_PACKAGES_TOKEN}" --location=global
+
+      - run: pnpm -r publish --access public --tag latest --no-git-checks
+        env:
+          NPM_PACKAGES_TOKEN: ${{ secrets.NPM_PACKAGES_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
+
+      - run: npm config delete "//registry.npmjs.org/:_authToken" --location=global
+        if: always()
+
+  ghcr:
+    name: Release GHCR
+    runs-on: ubuntu-latest
+    needs: version
+    environment: GHCR Packages
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - '@chainfile/agent'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - run: corepack enable pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - uses: docker/setup-qemu-action@v3
+        with:
+          platforms: linux/amd64,linux/arm64
+
+      - run: docker buildx create --use --bootstrap --driver=docker-container
+
+      - run: pnpm -r exec npm version ${{ needs.version.outputs.result }} --git-tag-version=false
+
+      - run: pnpm turbo run push:docker --filter=${{ matrix.package }} --concurrency=1

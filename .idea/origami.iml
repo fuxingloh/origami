@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/pnpm-lock.yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/.vercel" />
+      <excludeFolder url="file://$MODULE_DIR$/.husky" />
+      <excludeFolder url="file://$MODULE_DIR$/workspace/solidity/.hardhat" />
+      <excludePattern pattern=".turbo" />
+      <excludePattern pattern=".chainfile" />
+      <excludePattern pattern=".origami" />
+      <excludePattern pattern="dist" />
+      <excludePattern pattern="*.js" />
+      <excludePattern pattern="*.d.ts" />
+      <excludePattern pattern="*.d.ts.map" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
