@@ -1,0 +1,36 @@
+{
+  "name": "@fuxingloh/origami-client",
+  "version": "0.0.0",
+  "private": false,
+  "files": [
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "**/*.js"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -rf ./src && tsc --build --clean",
+    "generate": "node --no-warnings generate.mjs",
+    "lint": "eslint ."
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@fuxingloh/origami-json": "workspace:^"
+  },
+  "devDependencies": {
+    "@fuxingloh/origami-openapi": "workspace:^",
+    "@workspace/tsconfig": "workspace:*",
+    "openapi-typescript-codegen": "^0.27.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

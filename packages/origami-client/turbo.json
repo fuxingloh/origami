@@ -1,0 +1,16 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "inputs": ["tsconfig.json", "tsconfig.build.json", "**/*.ts"],
+      "outputs": ["**/*.js", "**/*.d.ts", "**/*.d.ts.map"],
+      "dependsOn": ["generate"]
+    },
+    "generate": {
+      "inputs": ["generate.mjs"],
+      "outputs": ["core/**/*.ts", "models/**/*.ts", "services/**/*.ts"],
+      "dependsOn": ["@fuxingloh/origami-openapi#build"]
+    }
+  }
+}
