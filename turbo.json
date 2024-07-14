@@ -20,7 +20,8 @@
     },
     "lint": {
       "outputs": [],
-      "outputLogs": "errors-only"
+      "outputLogs": "errors-only",
+      "dependsOn": ["@fuxingloh/origami-eslint-plugin#build"]
     }
   }
 }

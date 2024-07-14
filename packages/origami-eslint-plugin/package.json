@@ -1,0 +1,39 @@
+{
+  "name": "@fuxingloh/origami-eslint-plugin",
+  "version": "0.0.0",
+  "private": false,
+  "main": "./index.js",
+  "files": [
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "**/*.js"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.56.10",
+    "@typescript-eslint/parser": "^7.10.0",
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*",
+    "eslint": "^8.57.0"
+  },
+  "peerDependencies": {
+    "eslint": ">=8.0.0"
+  }
+}

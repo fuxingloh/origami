@@ -37,5 +37,6 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
+  require('@fuxingloh/origami-eslint-plugin').configs.recommended,
   require('eslint-config-prettier'),
 );
