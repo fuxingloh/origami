@@ -37,6 +37,5 @@ module.exports = tseslint.config(
       '@typescript-eslint/no-explicit-any': 'off',
     },
   },
-  require('@vetum/origami-eslint-plugin').configs.recommended,
   require('eslint-config-prettier'),
 );

@@ -1,0 +1,566 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should compile async.origami.ts 1`] = `
+{
+  "code": "async function h(h){return{hash:h.hash}}export{h as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "eip155:1/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile baseline.origami.ts 1`] = `
+{
+  "code": "function h(h){return{hash:h.hash}}export{h as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "eip155:31337/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile conditional.origami.ts 1`] = `
+{
+  "code": "function n(n){if(100n!==n.number)return 200n===n.number?{number:200n}:{number:n.number}}export{n as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "eip155:31337/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile default-export.origami.ts 1`] = `
+{
+  "code": "function h(h){return{hash:h.hash}}export{h as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "eip155:1/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile erc20.origami.ts 1`] = `
+{
+  "code": "function a(a){return{hash:a.transactionHash,block:{hash:a.blockHash,number:a.blockNumber},from:a.args.from,to:a.args.to,quantity:a.args.value}}export{a as map};",
+  "subscribe": [
+    {
+      "abi": "erc20",
+      "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "from": 0,
+      "to": 100,
+      "usi": "eip155:31337/log",
+    },
+    {
+      "abi": "erc20",
+      "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+      "from": 101,
+      "usi": "eip155:31337/log",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile import-abi.origami.ts 1`] = `
+{
+  "code": "function a(a){return{hash:a.transactionHash,block:{hash:a.blockHash,number:a.blockNumber}}}export{a as map};",
+  "subscribe": [
+    {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address",
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+            },
+          ],
+          "name": "ERC721IncorrectOwner",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "operator",
+              "type": "address",
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "ERC721InsufficientApproval",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "approver",
+              "type": "address",
+            },
+          ],
+          "name": "ERC721InvalidApprover",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "operator",
+              "type": "address",
+            },
+          ],
+          "name": "ERC721InvalidOperator",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+            },
+          ],
+          "name": "ERC721InvalidOwner",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "receiver",
+              "type": "address",
+            },
+          ],
+          "name": "ERC721InvalidReceiver",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "sender",
+              "type": "address",
+            },
+          ],
+          "name": "ERC721InvalidSender",
+          "type": "error",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "ERC721NonexistentToken",
+          "type": "error",
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "approved",
+              "type": "address",
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "Approval",
+          "type": "event",
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "operator",
+              "type": "address",
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "approved",
+              "type": "bool",
+            },
+          ],
+          "name": "ApprovalForAll",
+          "type": "event",
+        },
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address",
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address",
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "Transfer",
+          "type": "event",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address",
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "approve",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+            },
+          ],
+          "name": "balanceOf",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "getApproved",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "owner",
+              "type": "address",
+            },
+            {
+              "internalType": "address",
+              "name": "operator",
+              "type": "address",
+            },
+          ],
+          "name": "isApprovedForAll",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [],
+          "name": "name",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "ownerOf",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "from",
+              "type": "address",
+            },
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address",
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "safeTransferFrom",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "from",
+              "type": "address",
+            },
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address",
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes",
+            },
+          ],
+          "name": "safeTransferFrom",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "operator",
+              "type": "address",
+            },
+            {
+              "internalType": "bool",
+              "name": "approved",
+              "type": "bool",
+            },
+          ],
+          "name": "setApprovalForAll",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "bytes4",
+              "name": "interfaceId",
+              "type": "bytes4",
+            },
+          ],
+          "name": "supportsInterface",
+          "outputs": [
+            {
+              "internalType": "bool",
+              "name": "",
+              "type": "bool",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [],
+          "name": "symbol",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "tokenURI",
+          "outputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string",
+            },
+          ],
+          "stateMutability": "view",
+          "type": "function",
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "from",
+              "type": "address",
+            },
+            {
+              "internalType": "address",
+              "name": "to",
+              "type": "address",
+            },
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256",
+            },
+          ],
+          "name": "transferFrom",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+        },
+      ],
+      "from": 0,
+      "usi": "eip155:31337/log",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile multi-chain.origami.ts 1`] = `
+{
+  "code": "function e(e,t){if("eip155:31337/block"===t.usi){const t=e;return{type:"ethereum",hash:t.hash,number:t.number}}if("bip122:0f9188f13cb7b2c71f2a335e3a4fc328/block"===t.usi){const t=e;return{type:"bitcoin",hash:t.hash,number:BigInt(t.height)}}}export{e as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "eip155:31337/block",
+    },
+    {
+      "from": 0,
+      "usi": "bip122:0f9188f13cb7b2c71f2a335e3a4fc328/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile return-array.origami.ts 1`] = `
+{
+  "code": "function t(t){return[{type:"block",height:BigInt(t.height)},{type:"tx",height:BigInt(t.height)}]}export{t as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "bip122:0f9188f13cb7b2c71f2a335e3a4fc328/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
+
+exports[`should compile terser.origami.ts 1`] = `
+{
+  "code": "function n(n){return{number:n.number,a:"a",kb:102400}}export{n as map};",
+  "subscribe": [
+    {
+      "from": 0,
+      "usi": "eip155:31337/block",
+    },
+  ],
+  "version": "v1",
+}
+`;
