@@ -1,0 +1,30 @@
+{
+  "name": "@imagiro/stream-core",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest --passWithNoTests"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*"
+  }
+}
