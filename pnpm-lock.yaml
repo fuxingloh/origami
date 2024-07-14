@@ -168,6 +168,34 @@ importers:
         specifier: workspace:*
         version: link:../../workspace/tsconfig
 
+  packages/origami:
+    dependencies:
+      '@fuxingloh/origami-client':
+        specifier: workspace:^
+        version: link:../origami-client
+      '@fuxingloh/origami-json':
+        specifier: workspace:^
+        version: link:../origami-json
+      '@fuxingloh/origami-program':
+        specifier: workspace:^
+        version: link:../origami-program
+      clipanion:
+        specifier: ^3.2.1
+        version: 3.2.1(typanion@3.14.0)
+    devDependencies:
+      '@fuxingloh/origami-openapi':
+        specifier: workspace:^
+        version: link:../origami-openapi
+      '@workspace/jest-preset':
+        specifier: workspace:*
+        version: link:../../workspace/jest-preset
+      '@workspace/tsconfig':
+        specifier: workspace:*
+        version: link:../../workspace/tsconfig
+      openapi-typescript-codegen:
+        specifier: ^0.27.0
+        version: 0.27.0
+
   packages/origami-client:
     dependencies:
       '@fuxingloh/origami-json':
@@ -3109,6 +3137,14 @@ packages:
       slice-ansi: 5.0.0
       string-width: 7.2.0
     dev: true
+
+  /clipanion@3.2.1(typanion@3.14.0):
+    resolution: {integrity: sha512-dYFdjLb7y1ajfxQopN05mylEpK9ZX0sO1/RfMXdfmwjlIsPkbh4p7A682x++zFPLDCo1x3p82dtljHf5cW2LKA==}
+    peerDependencies:
+      typanion: '*'
+    dependencies:
+      typanion: 3.14.0
+    dev: false
 
   /cliui@7.0.4:
     resolution: {integrity: sha512-OcRE68cOsVMXp1Yvonl/fzkQOyjLSu/8bhPDfQt0e0/Eb283TKP20Fs2MqoPsr9SwA595rRCA+QMzYc9nBP+JQ==}
@@ -7213,6 +7249,10 @@ packages:
   /tweetnacl@1.0.3:
     resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
     dev: true
+
+  /typanion@3.14.0:
+    resolution: {integrity: sha512-ZW/lVMRabETuYCd9O9ZvMhAh8GslSqaUjxmK/JLPCh6l73CvLBiuXswj/+7LdnWOgYsQ130FqLzFz5aGT4I3Ug==}
+    dev: false
 
   /type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}

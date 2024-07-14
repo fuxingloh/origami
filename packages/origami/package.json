@@ -1,0 +1,47 @@
+{
+  "name": "@fuxingloh/origami",
+  "version": "0.0.0",
+  "private": false,
+  "bin": {
+    "origami": "./bin.js"
+  },
+  "files": [
+    "bin.js",
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "**/*.js"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -rf ./client && tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest --passWithNoTests"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {
+    "@fuxingloh/origami-client": "workspace:^",
+    "@fuxingloh/origami-json": "workspace:^",
+    "@fuxingloh/origami-program": "workspace:^",
+    "clipanion": "^3.2.1"
+  },
+  "devDependencies": {
+    "@fuxingloh/origami-openapi": "workspace:^",
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*",
+    "openapi-typescript-codegen": "^0.27.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
