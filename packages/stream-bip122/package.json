@@ -1,0 +1,34 @@
+{
+  "name": "@imagiro/stream-bip122",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {
+    "@fuxingloh/origami-program": "workspace:*",
+    "@imagiro/stream-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@chainfile/schema": "^0.10.0",
+    "@chainfile/testcontainers": "^0.10.0",
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*",
+    "chainfile-bitcoin": "^0.10.0"
+  }
+}

@@ -17,6 +17,9 @@ packages/*/**/*.js
 # turborepo
 .turbo
 
+# chainfile
+.chainfile
+
 # origami
 .origami
 

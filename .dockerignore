@@ -1,0 +1,11 @@
+.github
+.husky
+.idea
+**/.turbo
+**/.DS_Store
+**/node_modules
+
+# tsconfig.json
+packages/*/**/*.d.ts
+packages/*/**/*.d.ts.map
+packages/*/**/*.js

@@ -5,7 +5,7 @@
 .next
 .turbo
 .origami
-.karfia
+.chainfile
 node_modules
 dist
 pnpm-lock.yaml
