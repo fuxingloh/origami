@@ -51,6 +51,42 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2
 
+  examples:
+    devDependencies:
+      '@chainfile/testcontainers':
+        specifier: ^0.10.0
+        version: 0.10.0
+      '@fuxingloh/origami':
+        specifier: workspace:*
+        version: link:../packages/origami
+      '@imagiro/imagiro-testcontainers':
+        specifier: workspace:*
+        version: link:../packages/imagiro-testcontainers
+      '@openzeppelin/contracts':
+        specifier: 5.0.2
+        version: 5.0.2
+      '@workspace/jest-preset':
+        specifier: workspace:*
+        version: link:../workspace/jest-preset
+      '@workspace/solidity':
+        specifier: workspace:*
+        version: link:../workspace/solidity
+      '@workspace/tsconfig':
+        specifier: workspace:*
+        version: link:../workspace/tsconfig
+      chainfile-bitcoin:
+        specifier: ^0.10.0
+        version: 0.10.0
+      chainfile-hardhat:
+        specifier: ^0.10.0
+        version: 0.10.0
+      hardhat-testcontainers:
+        specifier: ^0.4.9
+        version: 0.4.9(viem@2.17.3)
+      viem:
+        specifier: ^2.12.4
+        version: 2.17.3(typescript@5.4.5)(zod@3.23.8)
+
   packages/imagiro-data:
     dependencies:
       '@fuxingloh/origami-json':

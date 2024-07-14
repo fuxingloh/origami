@@ -1,0 +1,35 @@
+{
+  "name": "@fuxingloh/origami-examples",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "devDependencies": {
+    "@chainfile/testcontainers": "^0.10.0",
+    "@fuxingloh/origami": "workspace:*",
+    "@imagiro/imagiro-testcontainers": "workspace:*",
+    "@openzeppelin/contracts": "5.0.2",
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/solidity": "workspace:*",
+    "@workspace/tsconfig": "workspace:*",
+    "chainfile-bitcoin": "^0.10.0",
+    "chainfile-hardhat": "^0.10.0",
+    "hardhat-testcontainers": "^0.4.9",
+    "viem": "^2.12.4"
+  }
+}
