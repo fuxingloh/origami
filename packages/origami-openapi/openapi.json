@@ -1,0 +1,525 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Origami OpenAPI",
+    "version": "0.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://origami.fuxing.dev/api/"
+    }
+  ],
+  "paths": {
+    "/getProgram": {
+      "get": {
+        "operationId": "Program-Get",
+        "tags": ["rpc"],
+        "parameters": [
+          {
+            "name": "programId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "programId": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string",
+                      "enum": ["v1"]
+                    },
+                    "subscribe": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "usi": {
+                                "type": "string"
+                              }
+                            },
+                            "required": ["usi"]
+                          },
+                          {
+                            "type": "object",
+                            "additionalProperties": {}
+                          }
+                        ]
+                      }
+                    },
+                    "code": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["published", "started", "stopped", "destroying"]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": ["programId", "version", "subscribe", "code", "status", "createdAt"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/createProgram": {
+      "post": {
+        "operationId": "Program-Create",
+        "tags": ["rpc"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "version": {
+                    "type": "string",
+                    "enum": ["v1"]
+                  },
+                  "subscribe": {
+                    "type": "array",
+                    "items": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "usi": {
+                              "type": "string",
+                              "pattern": "^bip122:[a-f0-9]{32}\\/block$"
+                            },
+                            "from": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "default": 0
+                            },
+                            "to": {
+                              "type": "integer",
+                              "exclusiveMinimum": true,
+                              "minimum": 1
+                            }
+                          },
+                          "required": ["usi"],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "usi": {
+                              "type": "string",
+                              "pattern": "^bip122:[a-f0-9]{32}\\/tx$"
+                            },
+                            "from": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "default": 0
+                            },
+                            "to": {
+                              "type": "integer",
+                              "exclusiveMinimum": true,
+                              "minimum": 1
+                            }
+                          },
+                          "required": ["usi"],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "usi": {
+                              "type": "string",
+                              "pattern": "^eip155:[0-9]{1,32}\\/block$"
+                            },
+                            "from": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "default": 0
+                            },
+                            "to": {
+                              "type": "integer",
+                              "exclusiveMinimum": true,
+                              "minimum": 1
+                            }
+                          },
+                          "required": ["usi"],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "usi": {
+                              "type": "string",
+                              "pattern": "^eip155:[0-9]{1,32}\\/tx$"
+                            },
+                            "from": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "default": 0
+                            },
+                            "to": {
+                              "type": "integer",
+                              "exclusiveMinimum": true,
+                              "minimum": 1
+                            }
+                          },
+                          "required": ["usi"],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "usi": {
+                              "type": "string",
+                              "pattern": "^eip155:[0-9]{1,32}\\/log$"
+                            },
+                            "from": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "default": 0
+                            },
+                            "to": {
+                              "type": "integer",
+                              "exclusiveMinimum": true,
+                              "minimum": 1
+                            },
+                            "abi": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "enum": ["erc20"]
+                                },
+                                {
+                                  "type": "array",
+                                  "items": {}
+                                }
+                              ]
+                            },
+                            "event": {
+                              "type": "string"
+                            },
+                            "address": {
+                              "type": "string",
+                              "pattern": "^0x[a-fA-F0-9]{40}$"
+                            },
+                            "args": {
+                              "type": "object",
+                              "additionalProperties": {}
+                            }
+                          },
+                          "required": ["usi", "abi"],
+                          "additionalProperties": false
+                        }
+                      ]
+                    },
+                    "minItems": 1,
+                    "maxItems": 100
+                  },
+                  "code": {
+                    "type": "string",
+                    "maxLength": 102400
+                  }
+                },
+                "required": ["version", "subscribe", "code"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "programId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["published"]
+                    }
+                  },
+                  "required": ["programId", "status"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/startProgram": {
+      "post": {
+        "operationId": "Program-Start",
+        "tags": ["rpc"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programId": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": ["programId"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "programId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["started"]
+                    }
+                  },
+                  "required": ["programId", "status"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/stopProgram": {
+      "post": {
+        "operationId": "Program-Stop",
+        "tags": ["rpc"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programId": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "required": ["programId"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "programId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": ["stopped"]
+                    }
+                  },
+                  "required": ["programId", "status"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/queryStream": {
+      "post": {
+        "operationId": "Stream-Query",
+        "tags": ["rpc"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "programId": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "group": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 256
+                  },
+                  "limit": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "default": 20
+                  },
+                  "reverse": {
+                    "type": "boolean",
+                    "default": true
+                  },
+                  "after": {
+                    "type": "string"
+                  },
+                  "before": {
+                    "type": "string"
+                  }
+                },
+                "required": ["programId"],
+                "additionalProperties": false
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "data": {
+                            "type": "object",
+                            "additionalProperties": {}
+                          },
+                          "sort": {
+                            "type": "string"
+                          },
+                          "hash": {
+                            "type": "string"
+                          },
+                          "n": {
+                            "type": "number"
+                          }
+                        },
+                        "required": ["data", "sort", "hash", "n"],
+                        "additionalProperties": false
+                      }
+                    },
+                    "cursors": {
+                      "type": "object",
+                      "properties": {
+                        "before": {
+                          "type": "string"
+                        },
+                        "after": {
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": ["data", "cursors"],
+                  "additionalProperties": false
+                }
+              }
+            }
+          },
+          "default": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "responses": {
+      "error": {
+        "description": "Error response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "code": {
+                  "type": "string"
+                },
+                "issues": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "message": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["message"],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": ["message", "code"],
+              "additionalProperties": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

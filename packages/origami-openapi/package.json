@@ -1,0 +1,26 @@
+{
+  "name": "@fuxingloh/origami-openapi",
+  "version": "0.0.0",
+  "private": false,
+  "files": [
+    "openapi.json"
+  ],
+  "scripts": {
+    "build": "node generate.mjs",
+    "lint": "eslint ."
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@imagiro/imagiro-service": "workspace:*",
+    "@trpc/server": "^10.45.2",
+    "trpc-openapi": "^1.2.0"
+  }
+}
