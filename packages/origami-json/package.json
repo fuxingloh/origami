@@ -1,0 +1,33 @@
+{
+  "name": "@fuxingloh/origami-json",
+  "version": "0.0.0",
+  "private": false,
+  "files": [
+    "**/*.d.ts",
+    "**/*.d.ts.map",
+    "**/*.js"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*"
+  }
+}

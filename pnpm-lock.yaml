@@ -69,6 +69,15 @@ importers:
         specifier: ^8.57.0
         version: 8.57.0
 
+  packages/origami-json:
+    devDependencies:
+      '@workspace/jest-preset':
+        specifier: workspace:*
+        version: link:../../workspace/jest-preset
+      '@workspace/tsconfig':
+        specifier: workspace:*
+        version: link:../../workspace/tsconfig
+
   packages/origami-program:
     dependencies:
       '@rollup/plugin-commonjs':
