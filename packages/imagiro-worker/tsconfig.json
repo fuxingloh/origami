@@ -1,0 +1,6 @@
+{
+  "extends": "@workspace/tsconfig",
+  "compilerOptions": {
+    "lib": ["ES2021", "DOM"]
+  }
+}

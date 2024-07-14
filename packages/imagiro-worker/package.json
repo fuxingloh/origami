@@ -1,0 +1,40 @@
+{
+  "name": "@imagiro/imagiro-worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "build:docker": "docker buildx build --progress=plain -t ghcr.io/fuxingloh/imagiro-worker:$(node -p \"require('./package.json').version\") -f Dockerfile ../../",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest --passWithNoTests"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {
+    "@fuxingloh/origami-json": "workspace:^",
+    "@fuxingloh/origami-program": "workspace:^",
+    "@imagiro/imagiro-data": "workspace:*",
+    "@imagiro/stream-core": "workspace:*",
+    "@imagiro/stream-registry": "workspace:*",
+    "debug": "^4.3.4",
+    "fast-json-stable-stringify": "^2.1.0",
+    "got": "^11.8.6"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.12",
+    "@types/got": "^9.6.12",
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/tsconfig": "workspace:*"
+  }
+}
