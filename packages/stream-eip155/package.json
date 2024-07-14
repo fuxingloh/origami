@@ -1,0 +1,35 @@
+{
+  "name": "@imagiro/stream-eip155",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "tsc --build --clean",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "jest": {
+    "preset": "@workspace/jest-preset"
+  },
+  "dependencies": {
+    "@fuxingloh/origami-program": "workspace:*",
+    "@imagiro/stream-core": "workspace:*",
+    "@openzeppelin/contracts": "5.0.2",
+    "viem": "^2.12.4"
+  },
+  "devDependencies": {
+    "@workspace/jest-preset": "workspace:*",
+    "@workspace/solidity": "workspace:*",
+    "@workspace/tsconfig": "workspace:*",
+    "hardhat-testcontainers": "^0.4.9"
+  }
+}
