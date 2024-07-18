@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^8.56.10",
-    "@typescript-eslint/parser": "^7.10.0",
+    "@typescript-eslint/parser": "^7.16.1",
     "@workspace/jest-preset": "workspace:*",
     "@workspace/tsconfig": "workspace:*",
     "eslint": "^8.57.0"
