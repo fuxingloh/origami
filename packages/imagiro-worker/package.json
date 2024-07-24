@@ -29,7 +29,7 @@
     "@imagiro/stream-registry": "workspace:*",
     "debug": "^4.3.4",
     "fast-json-stable-stringify": "^2.1.0",
-    "got": "^11.8.6"
+    "got": "^14.4.2"
   },
   "devDependencies": {
     "@types/debug": "^4.1.12",
