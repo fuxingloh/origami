@@ -39,6 +39,6 @@
     "@openzeppelin/contracts": "5.0.2",
     "@workspace/jest-preset": "workspace:*",
     "@workspace/tsconfig": "workspace:*",
-    "viem": "^2.12.4"
+    "viem": "^2.17.11"
   }
 }
