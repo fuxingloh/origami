@@ -30,6 +30,6 @@
     "chainfile-bitcoin": "^0.10.0",
     "chainfile-hardhat": "^0.10.0",
     "hardhat-testcontainers": "^0.4.9",
-    "viem": "^2.12.4"
+    "viem": "^2.18.0"
   }
 }
