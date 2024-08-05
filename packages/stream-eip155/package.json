@@ -24,7 +24,7 @@
     "@fuxingloh/origami-program": "workspace:*",
     "@imagiro/stream-core": "workspace:*",
     "@openzeppelin/contracts": "5.0.2",
-    "viem": "^2.12.4"
+    "viem": "^2.18.8"
   },
   "devDependencies": {
     "@workspace/jest-preset": "workspace:*",
