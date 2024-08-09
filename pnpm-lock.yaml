@@ -82,10 +82,10 @@ importers:
         version: 0.10.0
       hardhat-testcontainers:
         specifier: ^0.4.9
-        version: 0.4.9(viem@2.17.3)
+        version: 0.4.9(viem@2.19.3)
       viem:
-        specifier: ^2.12.4
-        version: 2.17.3(typescript@5.4.5)(zod@3.23.8)
+        specifier: ^2.19.3
+        version: 2.19.3(typescript@5.4.5)(zod@3.23.8)
 
   packages/imagiro-data:
     dependencies:
@@ -349,8 +349,8 @@ importers:
         specifier: workspace:*
         version: link:../../workspace/tsconfig
       viem:
-        specifier: ^2.12.4
-        version: 2.17.3(typescript@5.4.5)(zod@3.23.8)
+        specifier: ^2.19.3
+        version: 2.19.3(typescript@5.4.5)(zod@3.23.8)
 
   packages/stream-bip122:
     dependencies:
@@ -402,8 +402,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2
       viem:
-        specifier: ^2.12.4
-        version: 2.17.3(typescript@5.4.5)(zod@3.23.8)
+        specifier: ^2.19.3
+        version: 2.19.3(typescript@5.4.5)(zod@3.23.8)
     devDependencies:
       '@workspace/jest-preset':
         specifier: workspace:*
@@ -416,7 +416,7 @@ importers:
         version: link:../../workspace/tsconfig
       hardhat-testcontainers:
         specifier: ^0.4.9
-        version: 0.4.9(viem@2.17.3)
+        version: 0.4.9(viem@2.19.3)
 
   packages/stream-registry:
     dependencies:
@@ -4480,13 +4480,13 @@ packages:
       uglify-js: 3.18.0
     dev: true
 
-  /hardhat-testcontainers@0.4.9(viem@2.17.3):
+  /hardhat-testcontainers@0.4.9(viem@2.19.3):
     resolution: {integrity: sha512-CzIX6GL9JEUCyrEK9N5ztMIpfWuaMu/h2i3EUGYK/LDbu+Y6+5aliac4/C+WvLMXVZ2n+t1cN7ZcptuOedRvIg==}
     peerDependencies:
       viem: ^2
     dependencies:
       testcontainers: 10.10.3
-      viem: 2.17.3(typescript@5.4.5)(zod@3.23.8)
+      viem: 2.19.3(typescript@5.4.5)(zod@3.23.8)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -7436,8 +7436,8 @@ packages:
       convert-source-map: 2.0.0
     dev: true
 
-  /viem@2.17.3(typescript@5.4.5)(zod@3.23.8):
-    resolution: {integrity: sha512-FY/1uBQWfko4Esy8mU1RamvL64TLy91LZwFyQJ20E6AI3vTTEOctWfSn0pkMKa3okq4Gxs5dJE7q1hmWOQ7xcw==}
+  /viem@2.19.3(typescript@5.4.5)(zod@3.23.8):
+    resolution: {integrity: sha512-djOw1X/jOvDOEMiol4g/T030MVncF2utC9G929ODNJ/00E7UXjSpwOeuyapmaqn831eSIHlELicZETYl2vI9oQ==}
     peerDependencies:
       typescript: '>=5.0.4'
     peerDependenciesMeta:
@@ -7452,6 +7452,7 @@ packages:
       abitype: 1.0.5(typescript@5.4.5)(zod@3.23.8)
       isows: 1.0.4(ws@8.17.1)
       typescript: 5.4.5
+      webauthn-p256: 0.0.5
       ws: 8.17.1
     transitivePeerDependencies:
       - bufferutil
@@ -7467,6 +7468,12 @@ packages:
     dependencies:
       makeerror: 1.0.12
     dev: true
+
+  /webauthn-p256@0.0.5:
+    resolution: {integrity: sha512-drMGNWKdaixZNobeORVIqq7k5DsRC9FnG201K2QjeOoQLmtSDaSsVZdkg6n5jUALJKcAG++zBPJXmv6hy0nWFg==}
+    dependencies:
+      '@noble/curves': 1.4.0
+      '@noble/hashes': 1.4.0
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
