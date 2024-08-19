@@ -33,7 +33,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@testcontainers/postgresql": "^10.9.0",
+    "@testcontainers/postgresql": "^10.11.0",
     "@types/debug": "^4.1.12",
     "@workspace/jest-preset": "workspace:*",
     "@workspace/tsconfig": "workspace:*"

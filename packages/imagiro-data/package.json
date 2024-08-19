@@ -29,7 +29,7 @@
     "pg": "^8.11.5"
   },
   "devDependencies": {
-    "@testcontainers/postgresql": "^10.9.0",
+    "@testcontainers/postgresql": "^10.11.0",
     "@types/debug": "^4.1.12",
     "@types/pg": "^8.11.6",
     "@workspace/jest-preset": "workspace:*",
