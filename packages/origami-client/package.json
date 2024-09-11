@@ -28,7 +28,7 @@
   "devDependencies": {
     "@fuxingloh/origami-openapi": "workspace:^",
     "@workspace/tsconfig": "workspace:*",
-    "openapi-typescript-codegen": "^0.27.0"
+    "openapi-typescript-codegen": "^0.29.0"
   },
   "engines": {
     "node": ">=18.0.0"
